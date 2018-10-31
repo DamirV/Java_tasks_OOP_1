@@ -1,6 +1,7 @@
 package MyPolynomial_class;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import static java.lang.Math.pow;
 
@@ -9,12 +10,11 @@ public class MyPolynomial {
 
     public MyPolynomial(double... coeffs) {
         this.coeffs = new double[coeffs.length];
-
         this.coeffs = coeffs;
     }
 
     @Override
-    public String toString() {
+    public String toString() { // для красивого выввода полинома
         String str ="";
         boolean flag = true;
         for(int i = coeffs.length - 1; i > 0; i--) {
@@ -105,6 +105,28 @@ public class MyPolynomial {
         return res;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if (this == o) {
+            return true;
+        }
 
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
+        MyPolynomial that = (MyPolynomial) o;
+        return hashCode() == o.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int res = 17;
+
+        for(int i = 0; i < coeffs.length; i++){
+            res = 31*res + (int)(Double.doubleToLongBits(coeffs[i])^(Double.doubleToLongBits(coeffs[i])>>>32));
+        }
+
+        return res;
+    }
 }

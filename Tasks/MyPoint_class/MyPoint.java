@@ -1,6 +1,7 @@
 package MyPoint_class;
 
 import static java.lang.Math.sqrt;
+import static java.lang.Math.toIntExact;
 
 public class MyPoint {
     private int x = 0;
@@ -60,5 +61,27 @@ public class MyPoint {
 
     public double distance(){
         return sqrt((double)(this.x*this.x + this.y*this.y));
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+
+        if(o == null ||!(o instanceof MyPoint)){
+            return false;
+        }
+
+        MyPoint that = (MyPoint) o;
+        return this.x==that.x && this.y == that.y;
+    }
+
+    @Override
+    public int hashCode(){
+        int res = 17;
+        res = 31 * res + x;
+        res = 31 * res + y;
+        return res;
     }
 }

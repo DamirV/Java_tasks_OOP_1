@@ -1,5 +1,8 @@
 package Employee_class;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Employee {
     private int id;
     private String firstName;
@@ -49,5 +52,30 @@ public class Employee {
                 ", name='" + this.getName() + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+
+        if(o == null ||!(o instanceof Employee)){
+            return false;
+        }
+
+        Employee that = (Employee) o;
+        return id == that.id && salary == that.salary && Objects.equals(firstName,that.firstName) && Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode(){
+        int res = 17;
+        res = 31 * res + id;
+        res = 31 * res + salary;
+        res = 31 * res + firstName.hashCode();
+        res = 31 * res + lastName.hashCode();
+
+       return res;
     }
 }

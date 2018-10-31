@@ -73,15 +73,6 @@ public class MyComplex {
         }
     }
 
-    public boolean equals(MyComplex another){
-        if(this.real == another.getReal() && this.imag == another.getImag()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
     public double magnitude(){
         return sqrt(pow(this.real,2) + pow(this.imag,2));
     }
@@ -133,5 +124,28 @@ public class MyComplex {
     public MyComplex conjugate(){
         MyComplex temp = new MyComplex(this.real, this.imag*-1);
         return temp;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+
+        if(o == null ||!(o instanceof MyComplex)){
+            return false;
+        }
+
+        MyComplex that = (MyComplex) o;
+        return this.real == that.real && this.imag == that.imag;
+    }
+
+    @Override
+    public int hashCode(){
+        int res = 17;
+        res = 31*res + (int)(Double.doubleToLongBits(real)^(Double.doubleToLongBits(real)>>>32));
+        res = 31*res + (int)(Double.doubleToLongBits(imag)^(Double.doubleToLongBits(imag)>>>32));
+
+        return res;
     }
 }

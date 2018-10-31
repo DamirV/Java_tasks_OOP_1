@@ -1,5 +1,7 @@
 package MyTriangle_class;
 
+import java.util.Objects;
+
 public class MyPoint {
     private int x;
     private int y;
@@ -14,17 +16,39 @@ public class MyPoint {
         this.y = p.y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
     @Override
     public String toString() {
-        return "x=" + x +
-                ", y=" + y;
+        return "x=" + x + ", y=" + y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+
+        MyPoint myPoint = (MyPoint) o;
+        return x == myPoint.x && y == myPoint.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int res = 17;
+        res = 31*res + x;
+        res = 31*res + y;
+
+        return res;
     }
 }

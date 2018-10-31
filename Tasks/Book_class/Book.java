@@ -60,4 +60,29 @@ public class Book {
         book+= ", price=" + price +", qty=" + qty + "]";
         return book;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if( this == o){
+            return true;
+        }
+
+        if(o == null ||!(o instanceof Book)){
+            return false;
+        }
+
+        Book that = (Book)o;
+        return qty == that.qty && price == that.price && name.equals(that.name) && Arrays.equals(authors,that.authors);
+    }
+
+    @Override
+    public int hashCode(){
+        int res = 17;
+        res = 31 * res + qty;
+        res = 31 * res + (int)(Double.doubleToLongBits(price)^(Double.doubleToLongBits(price)>>>32));
+        res = 31 * res + name.hashCode();
+        res = 31 * res + Arrays.hashCode(authors);
+
+        return res;
+    }
 }

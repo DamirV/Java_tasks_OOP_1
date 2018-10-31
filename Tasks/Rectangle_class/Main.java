@@ -5,13 +5,21 @@ public class Main {
         Rectangle r1 = new Rectangle();
         Rectangle r2 = new Rectangle(10, 20);
 
-        r2.setLength(15);
-        r2.setWidth(15);
+        r1.setLength(20);
+        r1.setWidth(10);
 
-        System.out.println("r2: length=" + r2.getLength() + " width=" + r2.getWidth()); //15 15
-        System.out.println("r2: " + r2);
+        System.out.println(r1.getLength()); //10
+        System.out.println(r1.getWidth()); // 20
+        System.out.println(r2); //10 20
+        System.out.println("--------------------------------");
 
-        System.out.println("r2: area=" + r2.getArea() + " perimetr=" + r2.getPerimetr()); //225 60
+        System.out.println(r2.getArea()); // 200
+        System.out.println(r2.getPerimetr()); // 60
+        System.out.println("--------------------------------");
 
+        System.out.println(r1.hashCode());
+        System.out.println(r2.hashCode());
+        System.out.println(r1 == r2);
+        System.out.println(r1.equals(r2));
     }
 }

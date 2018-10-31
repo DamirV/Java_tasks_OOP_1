@@ -34,16 +34,44 @@ public class Container {
         return y1;
     }
 
-    public boolean collides(Ball ball){
-        boolean flag = false;
-        if(ball.getX() - ball.getRadius() <=  x1 || ball.getX() + ball.getRadius() >= x2){
-            flag = true;
-        }
-        if(ball.getY() - ball.getRadius() <=y1 || ball.getY() + ball.getRadius() >= y2){
-            flag = true;
+    public boolean collidesVertical(Ball ball){
+        if(ball.getX() + ball.getxDelta() - ball.getRadius() <=  x1 || ball.getX() + ball.getxDelta() + ball.getRadius() >= x2){
+            return true;
         }
 
-        return flag;
+        return false;
     }
 
+    public boolean collidesHorizontal(Ball ball){
+
+        if(ball.getY() + ball.getyDelta() - ball.getRadius() <=y1 || ball.getY() + ball.getyDelta() + ball.getRadius() >= y2){
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+
+        if(!(o instanceof Container)){
+            return false;
+        }
+
+        Container that = (Container)o;
+        return x1 == that.x1 && x2 == that.x2 && y1 == that.y1 && y2 == that.y2;
+    }
+
+    @Override
+    public int hashCode(){
+        int res = 17;
+        res = 31 * res + x1;
+        res = 31 * res + x2;
+        res = 31 * res + y1;
+        res = 31 * res + y2;
+        return res;
+    }
 }

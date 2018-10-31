@@ -1,5 +1,7 @@
 package Circle_class;
 
+import java.security.PublicKey;
+
 import static java.lang.Math.PI;
 
 public class Circle {
@@ -42,6 +44,28 @@ public class Circle {
     @Override
     public String toString(){
         return "radius=" + radius + " color=" + color;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+
+        if(o == null ||!(o instanceof Circle)){
+            return false;
+        }
+
+        Circle that = (Circle)o;
+        return radius == that.radius && color.equals(that.color);
+    }
+
+    @Override
+    public int hashCode(){
+        int res = 17;
+        res = 31*res + (int)(Double.doubleToLongBits(radius)^(Double.doubleToLongBits(radius)>>>32));
+        res = 31*res + color.hashCode();
+        return res;
     }
 }
 
