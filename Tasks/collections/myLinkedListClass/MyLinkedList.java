@@ -1,10 +1,5 @@
 package myLinkedListClass;
 
-//import java.lang.reflect.Array;
-//import java.util.Iterator;
-//import java.util.Objects;
-
-import java.lang.reflect.Array;
 import java.util.Iterator;
 
 public class MyLinkedList<T> implements ILinkedList<T> {
